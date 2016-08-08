@@ -1,10 +1,12 @@
 /* 
- * SHT21/HTU21 sensor data to EmonCMS on ESP8266 over https or http
+ * Send temperature and humidity data from SHT21/HTU21 sensor on ESP8266 to EmonCMS over HTTPS or HTTP
  * 
  * Demo for TaaraESP SHT21 Wifi Humidity sensor https://taaralabs.eu/es1
  * 
  * by Märt Maiste, TaaraLabs
- * 
+ * https://github.com/TaaraLabs/TaaraESP-SHT21-EmonCMS
+ * 2016-08-08
+ *
  * Configuration
  * First, the EmonCMS account is needed either on https://emoncms.org or on a private EmonCMS server.
  * For entering the WiFi and EmonCMS settings go to config mode - press config button in one second AFTER powering on.
