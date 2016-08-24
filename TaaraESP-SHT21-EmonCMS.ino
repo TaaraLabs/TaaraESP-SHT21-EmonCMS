@@ -26,6 +26,8 @@
  * LED stays on longer than 5 seconds - problem with WiFi connection or the module is in config mode. WiFi is not configured properly or not in range.
  * LED blinks once at a time - could not connect to server. Server is not configured or not accessible.
  * LED blinks twice at a time - problem with the request. Server did not answer with "ok". Wrong apikey, error in data format or server/app is broken.
+ * LED keeps blinking - unknown error.
+ * After blinking for five minutes the module restarts.
 */
 
 #include <ESP8266WiFi.h>       // https://github.com/esp8266/Arduino
@@ -40,7 +42,7 @@
 
 #include <EEPROM.h>
 
-#define DEBUG 0          // serial port debugging
+//#define DEBUG 1          // serial port debugging
 #define HTTPS 1          // use secure connection
 
 const int interval  = 5; // send readings every 5 minutes
@@ -69,7 +71,9 @@ void blink (byte times) {
       digitalWrite(LED, LOW);
       delay(100);
     }
-    delay(1000);
+    if (times < 5) {  // if too many blinks in a row then
+      delay(1000);    // just keep blinking without delays
+    }
   }  
 }
 
@@ -241,10 +245,9 @@ void setup() {
   delay(5000);                            // going to sleep may take some time
 }
 
-void loop() {
-  // we should never reach this point, but if we do, then blink rapidly
-  digitalWrite(LED, HIGH);
-  delay(100);
-  digitalWrite(LED, LOW);
-  delay(100);
+void loop() {                             // we should never reach this point, but if we do, then 
+  blink(10);                              // blink continuously for five minutes
+  delay(3000);
+  ESP.reset();                            // and reset the module
+  delay(5000);  
 }
