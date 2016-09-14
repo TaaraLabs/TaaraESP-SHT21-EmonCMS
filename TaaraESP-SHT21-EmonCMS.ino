@@ -7,27 +7,6 @@
  * https://github.com/TaaraLabs/TaaraESP-SHT21-EmonCMS
  * 2016-08-08
  *
- * Configuration
- * First, the EmonCMS account is needed either on https://emoncms.org or on a private EmonCMS server.
- * For entering the WiFi and EmonCMS settings go to config mode - press config button in one second AFTER powering on.
- * The status LED should stay on.
- * On your WiFi enabled mobile device or laptop search for WiFi AP-s with the name starting with ESP and following few numbers (module ID) - connect to it.
- * In most cases the device is automatically redirected to the configuration web page on http://192.168.4.1
- * Choose the WiFi network from the list or enter it manually, enter WiFi password, EmonCMS server name and APIKEY and save settings.
- * The board should restart and enter the normal operational mode.
- * 
- * Normal operation
- * At the startup the status LED goes on and stays on for few seconds until the WiFi connection is established.
- * If connecting to the server and sending the data request is successful then the LED stays off and the module enters deep sleep for five minutes.
- * After deep sleep the module reboots and everything starts from the beginning.
- * In short - in normal operation the status LED should go on for few seconds after every five minutes.
- * 
- * Diagnostics
- * LED stays on longer than 5 seconds - problem with WiFi connection or the module is in config mode. WiFi is not configured properly or not in range.
- * LED blinks once at a time - could not connect to server. Server is not configured or not accessible.
- * LED blinks twice at a time - problem with the request. Server did not answer with "ok". Wrong apikey, error in data format or server/app is broken.
- * LED keeps blinking - unknown error.
- * After blinking for five minutes the module restarts.
 */
 
 #include <ESP8266WiFi.h>       // https://github.com/esp8266/Arduino
