@@ -27,8 +27,8 @@ In short - in normal operation the status LED should go on for few seconds after
 
 Diagnostics
 
-LED stays on longer than 5 seconds - problem with WiFi connection or the module is in config mode. WiFi is not configured properly or not in range.
-LED blinks once at a time - could not connect to server. Server is not configured or not accessible.
-LED blinks twice at a time - problem with the request. Server did not answer with "ok". Wrong apikey, error in data format or server/app is broken.
-LED keeps blinking - unknown error.
+* LED stays on longer than 5 seconds - problem with WiFi connection or the module is in config mode. WiFi is not configured properly or not in range.
+* LED blinks once at a time - could not connect to server. Server is not configured or not accessible.
+* LED blinks twice at a time - problem with the request. Server did not answer with "ok". Wrong apikey, error in data format or server/app is broken.
+* LED keeps blinking - unknown error.
 After blinking for five minutes the board restarts.
