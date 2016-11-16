@@ -20,10 +20,7 @@ The board should restart and enter the normal operational mode.
 
 Normal operation
 
-At the startup the status LED goes on and stays on for few seconds until the WiFi connection is established.
-If connecting to the server and sending the data request is successful then the LED stays off and the module enters deep sleep for five minutes.
-After deep sleep the module reboots and everything starts from the beginning.
-In short - in normal operation the status LED should go on for few seconds after every five minutes.
+In normal operation the status LED should turn on for few seconds after every five minutes.
 
 Diagnostics
 
