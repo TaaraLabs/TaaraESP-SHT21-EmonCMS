@@ -31,7 +31,9 @@ const int BUTTON    = 0; // program button is available after power-up for enter
 struct CONFIG {          // config data is very easy to read and write in the EEPROM using struct
   char host[40];         // EmonCMS server name
   char apikey[33];       // EmonCMS APIKEY
+  byte checksum;         // Calculating real CRC is too hard
 };
+const byte checksum = 73;
 
 CONFIG conf;             // initialize conf struct
 
@@ -86,6 +88,15 @@ void setup() {
 
   EEPROM.begin(100); // using 100 bytes of flash for config data
   EEPROM.get<CONFIG>(0, conf);
+
+  if (conf.checksum != checksum) {
+    #ifdef DEBUG
+    Serial.println("The checksum does not match, clearing data");
+    #endif    
+    memset(conf.host,   0, sizeof(conf.host));
+    memset(conf.apikey, 0, sizeof(conf.apikey));
+  }
+  
   #ifdef DEBUG
   Serial.print("host: ");   Serial.println(conf.host);
   Serial.print("apikey: "); Serial.println(conf.apikey);
@@ -129,6 +140,8 @@ void setup() {
     Serial.println("Saving config");
     strcpy(conf.host,   custom_host.getValue());            // read the data from wifiManager registers
     strcpy(conf.apikey, custom_apikey.getValue());
+    conf.checksum = checksum;
+    
     #ifdef DEBUG
     Serial.print("host: ");   Serial.println(conf.host);
     Serial.print("apikey: "); Serial.println(conf.apikey);
