@@ -17,7 +17,7 @@
 
 #include <WiFiManager.h>       // https://github.com/tzapu/WiFiManager
 
-#include "SparkFunHTU21D.h"    // https://github.com/sparkfun/SparkFun_HTU21D_Breakout_Arduino_Library
+#include "SparkFunHTU21D.h"    // https://github.com/sparkfun/SparkFun_HTU21D_Breakout_Arduino_Library  (v 1.1.1) change delay(55) -> delay(80) in SparkFunHTU21D.cpp
 
 #include <EEPROM.h>
 
